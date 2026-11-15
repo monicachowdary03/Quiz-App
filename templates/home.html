@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card" style="text-align:center;padding:48px 22px">
+  <p style="font-size:3.5rem;margin:0">🧠⚡</p>
+  <h1>Programming Basics <span class="grad">Quiz</span></h1>
+  <p class="muted">{{ count }} multiple-choice questions. Zero pressure (okay, a little). Drop your name and let's go.</p>
+  <form class="inline" method="post" action="{{ url_for('quiz') }}" style="justify-content:center">
+    <label>Your name <input name="player" placeholder="e.g. Monica" required></label>
+    <button>Start quiz 🚀</button>
+  </form>
+</div>
+{% endblock %}

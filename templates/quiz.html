@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Good luck, <span class="grad">{{ player }}</span> 🍀</h2>
+  <form method="post" action="{{ url_for('submit') }}">
+    <input type="hidden" name="player" value="{{ player }}">
+    {% for q in questions %}
+    <div class="q">
+      <p><span class="pill">Q{{ loop.index }}</span> <b>{{ q.question }}</b></p>
+      {% for key in ['a','b','c','d'] %}
+      <label class="opt"><input type="radio" name="q{{ q.id }}" value="{{ key }}" required>
+        {{ q['option_' ~ key] }}</label>
+      {% endfor %}
+    </div>
+    {% endfor %}
+    <button>Submit answers ✅</button>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+{% set pct = (score / total * 100) if total else 0 %}
+<div class="card row">
+  <div class="ring" style="--p:{{ pct }}"><span>{{ '%.0f'|format(pct) }}%</span></div>
+  <div>
+    <h1>{{ player }}, you scored <span class="grad">{{ score }} / {{ total }}</span></h1>
+    <p class="muted">{% if pct == 100 %}Flawless. Main character energy 👑{% elif pct >= 60 %}Solid run, keep going 🔥{% else %}Not your day, but revision arc starts now 📚{% endif %}</p>
+    <a class="btn" href="{{ url_for('leaderboard') }}">Leaderboard 🏆</a>
+    <a class="btn ghost" href="{{ url_for('home') }}">Try again</a>
+  </div>
+</div>
+<div class="card">
+  <h2>Review</h2>
+  <div class="scroll"><table>
+    {% for r in review %}
+    <tr>
+      <td>{{ r.question }}</td>
+      <td>{% if r.is_correct %}✅ Correct{% else %}<span class="overdue">❌ Answer: {{ r.correct_text }}</span>{% endif %}</td>
+    </tr>
+    {% endfor %}
+  </table></div>
+</div>
+{% endblock %}

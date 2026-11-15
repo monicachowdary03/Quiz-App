@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h1>Top 10 <span class="grad">legends</span> 🏆</h1>
+  {% if rows %}
+  <div class="scroll"><table>
+    <tr><th>#</th><th>Player</th><th>Score</th><th>Date</th></tr>
+    {% for r in rows %}
+    <tr><td>{{ ['🥇','🥈','🥉'][loop.index0] if loop.index0 < 3 else loop.index }}</td><td>{{ r.player }}</td>
+        <td><span class="pill">{{ r.score }} / {{ r.total }}</span></td><td class="muted">{{ r.taken_at }}</td></tr>
+    {% endfor %}
+  </table></div>
+  {% else %}<p class="muted">No attempts yet. Be the first! 👀</p>{% endif %}
+</div>
+{% endblock %}
